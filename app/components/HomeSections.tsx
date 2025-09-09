@@ -69,13 +69,13 @@ export function HomeSections() {
       {/* Section avec Map à la place de l'image */}
       <section className="flex flex-col md:flex-row-reverse">
         {/* Map à la place de l'image */}
-        <div className="w-full md:w-1/2 h-[500px] md:h-[600px]">
+        <div className="w-full md:w-1/2 h-[300px] md:h-[600px]">
           <Map />
         </div>
         
         {/* Carré noir avec horaires */}
         <div 
-          className="w-full md:w-1/2 h-[500px] md:h-[600px] bg-black flex items-center justify-center p-8"
+          className="w-full md:w-1/2 h-[300px] md:h-[600px] bg-black flex items-center justify-center p-4 md:p-8"
           data-hours-section
         >
           <OpeningHours />

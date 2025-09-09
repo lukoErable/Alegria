@@ -92,8 +92,8 @@ export const menuData: MenuCategory[] = [
   {
     title: "Bières",
     items: [
-      { name: "Bière Pression Blonde (25cl / 50cl)", price: "4€ / 7€" },
-      { name: "Bière Pression IPA (25cl / 50cl)", price: "5€ / 8€" },
+      { name: "Bière Blonde (25/50cl)", price: "4/7€" },
+      { name: "Bière IPA (25/50cl)", price: "5/8€" },
       { name: "Heineken (33cl)", price: "6€" },
       {
         name: "Corona (35.5cl)",

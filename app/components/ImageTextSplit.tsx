@@ -31,7 +31,7 @@ export function ImageTextSplit({
   return (
     <section className={`flex flex-col ${flexDirection}`}>
       <div 
-        className={`w-full md:w-1/2 min-h-[400px] md:min-h-[600px]  bg-fit bg-fixed bg-no-repeat relative ${backgroundPosition}`}
+        className={`w-full md:w-1/2 min-h-[300px] md:min-h-[600px] bg-cover md:bg-contain bg-fixed bg-no-repeat relative ${backgroundPosition}`}
         style={{ 
           backgroundImage: `url(${imageUrl})`,
           backgroundColor: '#1a1a1a'
@@ -42,16 +42,16 @@ export function ImageTextSplit({
       </div>
 
         <div className="w-full md:w-1/2 flex items-center justify-center bg-black">
-          <div className={`${showContent ? 'p-10 md:p-20 max-w-lg' : ''} w-full`}>
+          <div className={`${showContent ? 'p-6 md:p-20 max-w-lg' : ''} w-full`}>
             {showContent && (
               <>
                 {title && (
-                  <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">
+                  <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4">
                     {title}
                   </h2>
                 )}
                 {description && (
-                  <p className="text-gray-300 mb-8">{description}</p>
+                  <p className="text-gray-300 mb-6 md:mb-8 text-sm md:text-base">{description}</p>
                 )}
                 {buttonText && (
                   onButtonClick ? (
