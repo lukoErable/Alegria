@@ -33,9 +33,10 @@ body {
 /* Améliorations pour l'affichage des images sur PC */
 @media (min-width: 768px) {
   .image-section {
-    background-size: cover !important;
+    background-size: contain !important;
     background-position: center !important;
     background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
   }
   
   .image-section.reverse {
