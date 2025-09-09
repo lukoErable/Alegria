@@ -1,6 +1,6 @@
 // app/components/ImageTextSplit.tsx
-"use client";
 import Link from "next/link";
+ "next/link";
 
 interface ImageTextSplitProps {
   imageUrl: string;
@@ -26,24 +26,22 @@ export function ImageTextSplit({
   showContent = true,
 }: ImageTextSplitProps) {
   const flexDirection = reverse ? "md:flex-row-reverse" : "md:flex-row";
-  const backgroundPosition = reverse ? "md:bg-right" : "md:bg-left";
+  const backgroundPosition = reverse ? "bg-right" : "bg-lefbgt";
 
   return (
     <section className={`flex flex-col ${flexDirection}`}>
       <div 
-        className={`w-full md:w-1/2 min-h-[400px] md:min-h-[600px] bg-cover bg-no-repeat relative md:bg-fixed ${backgroundPosition}`}
+        className={`w-full md:w-1/2 min-h-[300px] md:min-h-[600px] bg-cover md:bg-contain bg-fixed bg-no-repeat relative ${backgroundPosition}`}
         style={{ 
           backgroundImage: `url(${imageUrl})`,
-          backgroundColor: '#1a1a1a',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundColor: '#1a1a1a'
         }}
         aria-label={title}
       >
         <div className="absolute inset-0 bg-black/5"></div>
       </div>
 
-        <div className="w-full min-h-[400px] md:min-h-[600px] md:w-1/2 flex items-center justify-center bg-black">
+        <div className="w-full md:w-1/2 flex items-center justify-center bg-p-4 md:p-6black">
           <div className={`${showContent ? 'p-6 md:p-20 max-w-lg' : ''} w-full`}>
             {showContent && (
               <>
