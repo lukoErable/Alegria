@@ -105,12 +105,20 @@ export function HeroSlider() {
       >
         <div
           className={`w-3 h-3 rounded-full ${
-            status.isOpen ? "bg-green-400 animate-pulse" : "bg-red-500"
+            status.isOpen 
+              ? status.message === "Ferme bientôt" 
+                ? "bg-orange-400 animate-pulse" 
+                : "bg-green-400 animate-pulse"
+              : "bg-red-500"
           }`}
         ></div>
         <span
           className={`text-sm font-medium ${
-            status.isOpen ? "text-green-400" : "text-red-400"
+            status.isOpen 
+              ? status.message === "Ferme bientôt" 
+                ? "text-orange-400" 
+                : "text-green-400"
+              : "text-red-400"
           } group-hover:text-white transition-colors duration-300`}
         >
           {status.message}

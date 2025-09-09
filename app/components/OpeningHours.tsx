@@ -1,25 +1,36 @@
 // app/components/OpeningHours.tsx
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { useOpeningHours } from "../hooks/useOpeningHours";
 
 export function OpeningHours() {
   const { status, todayIndex, hoursData, formatTime } = useOpeningHours();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   // Design sobre et compact
   return (
-    <div className="h-full w-full flex flex-col justify-center items-center p-6">
+    <div ref={ref} className="h-full w-full flex flex-col justify-center items-center p-6">
       {/* Status compact */}
       <div className="flex items-center mb-12">
         <div
           className={`w-3 h-3 rounded-full mr-3 ${
-            status.isOpen ? "bg-green-400" : "bg-red-500"
+            status.isOpen 
+              ? status.message === "Ferme bientôt" 
+                ? "bg-orange-400" 
+                : "bg-green-400"
+              : "bg-red-500"
           }`}
         ></div>
         <p
           className={`text-lg font-medium ${
-            status.isOpen ? "text-green-400" : "text-red-400"
+            status.isOpen 
+              ? status.message === "Ferme bientôt" 
+                ? "text-orange-400" 
+                : "text-green-400"
+              : "text-red-400"
           }`}
         >
           {status.message}
@@ -32,10 +43,10 @@ export function OpeningHours() {
           <motion.div
             key={item.day}
             initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
             transition={{ 
               duration: 0.4, 
-              delay: index * 0.1,
+              delay: isInView ? index * 0.1 : 0,
               ease: "easeOut"
             }}
             whileHover={{ 

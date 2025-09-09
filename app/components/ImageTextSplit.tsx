@@ -77,13 +77,13 @@ export function ImageTextSplit({
   }, []);
 
   return (
-    <section className={`flex flex-col bg-black ${flexDirection}`}>
+    <section className={`flex flex-col bg-black ${flexDirection} gap-0`}>
       <div 
         ref={imageRef}
         className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-cover md:bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out md:bg-center image-section ${reverse ? 'reverse' : 'normal'} ${backgroundPosition}`}
         style={{ 
           backgroundImage: `url(${imageUrl})`,
-          backgroundColor: '#1a1a1a',
+          backgroundColor: '#000000',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
@@ -92,7 +92,7 @@ export function ImageTextSplit({
         <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
-        <div ref={textRef} className="w-full md:w-1/2 flex items-center justify-center bg-p-4 md:p-6 transition-transform duration-75 ease-out">
+        <div ref={textRef} className="w-full md:w-1/2 flex items-center justify-center transition-transform duration-75 ease-out">
           <div className={`${showContent ? 'p-6 md:p-20 max-w-lg z-10' : ''} w-full`}>
             {showContent && (
               <>

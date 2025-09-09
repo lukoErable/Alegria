@@ -19,44 +19,52 @@ export function useOpeningHours() {
     const now = new Date();
     const currentDayIndex = now.getDay();
     const currentHour = now.getHours();
-    setTodayIndex(currentDayIndex);
-    const yesterdayIndex = (currentDayIndex - 1 + 7) % 7;
-    const today = hoursData[currentDayIndex];
-    const yesterday = hoursData[yesterdayIndex];
+    
+    // Déterminer le jour d'ouverture actuel
+    // Si on est après minuit (0-2h), on considère qu'on est encore dans la journée précédente
+    let actualDayIndex = currentDayIndex;
+    if (currentHour >= 0 && currentHour < 2) {
+      actualDayIndex = (currentDayIndex - 1 + 7) % 7;
+    }
+    
+    setTodayIndex(actualDayIndex);
+    const today = hoursData[actualDayIndex];
     let currentlyOpen = false;
     
-    if (
-      yesterday.open !== null &&
-      yesterday.close !== null &&
-      yesterday.close < yesterday.open &&
-      currentHour < yesterday.close
-    ) {
-      currentlyOpen = true;
-    } else if (today.open !== null && today.close !== null) {
+    if (today.open !== null && today.close !== null) {
       if (today.close > today.open) {
+        // Horaires normaux (ex: 10h-18h)
         if (currentHour >= today.open && currentHour < today.close) {
           currentlyOpen = true;
         }
       } else {
-        if (currentHour >= today.open) {
+        // Horaires qui passent minuit (ex: 17h-2h)
+        if (currentHour >= today.open || currentHour < today.close) {
           currentlyOpen = true;
         }
       }
     }
     
     if (currentlyOpen) {
-      const closingHour =
-        today.open !== null && currentHour >= today.open
-          ? today.close
-          : yesterday.close;
-      if (
-        closingHour !== null &&
-        (closingHour - currentHour === 1 ||
-          (closingHour < currentHour &&
-            closingHour === 1 &&
-            currentHour === 23))
-      ) {
-        setStatus({ isOpen: true, message: "Ferme bientôt" });
+      const closingHour = today.close;
+      if (closingHour !== null) {
+        if (today.close > today.open) {
+          // Horaires normaux
+          if (closingHour - currentHour === 1) {
+            setStatus({ isOpen: true, message: "Ferme bientôt" });
+          } else {
+            setStatus({ isOpen: true, message: "Ouvert Actuellement" });
+          }
+        } else {
+          // Horaires qui passent minuit
+          if (currentHour >= today.open && closingHour - currentHour === 1) {
+            setStatus({ isOpen: true, message: "Ferme bientôt" });
+          } else if (currentHour < today.close && currentHour === today.close - 1) {
+            setStatus({ isOpen: true, message: "Ferme bientôt" });
+          } else {
+            setStatus({ isOpen: true, message: "Ouvert Actuellement" });
+          }
+        }
       } else {
         setStatus({ isOpen: true, message: "Ouvert Actuellement" });
       }
