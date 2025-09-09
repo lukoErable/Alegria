@@ -38,25 +38,25 @@ export function ImageTextSplit({
         const scrolled = window.pageYOffset;
         const windowHeight = window.innerHeight;
         
-        // Effet parallax pour l'image (descend plus lentement)
+        // Effet parallax pour l'image
         if (imageRef.current) {
           const rect = imageRef.current.getBoundingClientRect();
           const elementTop = rect.top + scrolled;
           
-          // Effet parallax plus lent pour l'image
-          const parallaxRate = 0.1; // Plus lent
+          // Effet parallax plus subtil et fluide
+          const parallaxRate = 0.2; // Réduit pour un effet plus doux
           const translateY = (scrolled - elementTop + windowHeight) * parallaxRate;
           
           imageRef.current.style.transform = `translateY(${translateY}px)`;
         }
         
-        // Effet parallax pour le texte (monte et passe par-dessus)
+        // Effet parallax inverse pour le texte (compensation)
         if (textRef.current) {
           const rect = textRef.current.getBoundingClientRect();
           const elementTop = rect.top + scrolled;
           
-          // Effet parallax inverse plus prononcé pour que le texte monte
-          const textParallaxRate = -0.3; // Plus prononcé pour monter
+          // Effet parallax inverse pour maintenir l'alignement
+          const textParallaxRate = -0.1; // Inverse et plus faible
           const translateY = (scrolled - elementTop + windowHeight) * textParallaxRate;
           
           textRef.current.style.transform = `translateY(${translateY}px)`;
@@ -92,7 +92,7 @@ export function ImageTextSplit({
         <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
-        <div ref={textRef} className="w-full min-h-[400px] md:min-h-[500px] bg-black md:w-1/2 flex items-center justify-center bg-p-4 md:p-6 transition-transform duration-75 ease-out relative z-20">
+        <div ref={textRef} className="w-full md:w-1/2 flex items-center justify-center bg-p-4 md:p-6 transition-transform duration-75 ease-out">
           <div className={`${showContent ? 'p-6 md:p-20 max-w-lg z-10' : ''} w-full`}>
             {showContent && (
               <>
