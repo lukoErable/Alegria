@@ -69,7 +69,14 @@ export function Navbar() {
             {isScrolled ? (
               <span className="text-xl">ALEGRÍA</span>
             ) : (
-              <Image className="" src="/images/logo.png" alt="Alegria" width={100} height={100} />
+              <Image 
+                className="" 
+                src="/images/logo.png" 
+                alt="Alegria" 
+                width={100} 
+                height={100}
+                style={{ width: "auto", height: "auto" }}
+              />
             )}
           </Link>
 

@@ -78,9 +78,22 @@ export function ImageTextSplit({
 
   return (
     <section className={`flex flex-col bg-black ${flexDirection}`}>
-      {/* Sur mobile: texte en premier, sur desktop: ordre selon reverse */}
-      <div ref={textRef} className={`w-full md:w-1/2 flex items-center justify-center bg-p-4 md:p-6 transition-transform duration-75 ease-out ${reverse ? 'md:order-2' : 'md:order-1'}`}>
-        <div className={`${showContent ? 'p-6 md:p-20 max-w-lg z-10' : ''} w-full`}>
+      <div 
+        ref={imageRef}
+        className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-contain md:bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out md:bg-center image-section ${reverse ? 'reverse' : 'normal'} ${backgroundPosition}`}
+        style={{ 
+          backgroundImage: `url(${imageUrl})`,
+          backgroundColor: '#1a1a1a',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+        aria-label={title}
+      >
+        <div className="absolute inset-0 bg-black/20"></div>
+      </div>
+
+        <div ref={textRef} className="w-full md:w-1/2 flex items-center justify-center bg-p-4 md:p-6 transition-transform duration-75 ease-out">
+          <div className={`${showContent ? 'p-6 md:p-20 max-w-lg z-10' : ''} w-full`}>
             {showContent && (
               <>
                 {title && (
@@ -117,22 +130,6 @@ export function ImageTextSplit({
             )}
           </div>
         </div>
-      </div>
-
-      {/* Image en second sur mobile, ordre selon reverse sur desktop */}
-      <div 
-        ref={imageRef}
-        className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-contain md:bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out md:bg-center image-section ${reverse ? 'reverse' : 'normal'} ${backgroundPosition} ${reverse ? 'md:order-1' : 'md:order-2'}`}
-        style={{ 
-          backgroundImage: `url(${imageUrl})`,
-          backgroundColor: '#1a1a1a',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-        aria-label={title}
-      >
-        <div className="absolute inset-0 bg-black/20"></div>
-      </div>
     </section>
   );
 }

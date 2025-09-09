@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description:
     "Découvrez notre sélection de boissons, planches et burgers dans une ambiance unique.",
   other: {
+    "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
   },
