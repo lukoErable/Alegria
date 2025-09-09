@@ -45,13 +45,19 @@ export function Navbar() {
             : "bg-transparent"
         }`}
       >
-        <div className=" container mx-auto px-6 py-4 flex justify-between items-center">
-          {/* Logo */}
+        <div className={`container mx-auto px-6 flex justify-between items-center transition-all duration-300 ${
+          isScrolled ? "py-2" : "py-4"
+        }`}>
+          {/* Logo/Text - Change selon le scroll */}
           <Link
             href="/"
-            className="text-2xl font-bold text-white uppercase tracking-wider"
+            className="text-2xl font-bold text-white uppercase tracking-wider transition-all duration-300"
           >
-          <Image className="" src="/images/logo.png" alt="Alegria" width={100} height={100} />
+            {isScrolled ? (
+              <span className="text-xl">ALEGRÍA</span>
+            ) : (
+              <Image className="" src="/images/logo.png" alt="Alegria" width={100} height={100} />
+            )}
           </Link>
 
           {/* Navigation pour Desktop */}

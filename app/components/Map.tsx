@@ -5,7 +5,7 @@ const googleMapsEmbedUrl =
 
 export function Map() {
   return (
-    <div className="relative w-full h-full overflow-hidden sticky top-0">
+    <div className="relative w-full h-full overflow-hidden sticky top-0 opacity-60">
       <iframe
         src={googleMapsEmbedUrl}
         width="100%"
