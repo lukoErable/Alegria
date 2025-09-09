@@ -29,7 +29,7 @@ export function ImageTextSplit({
   const imageRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const flexDirection = reverse ? "md:flex-row-reverse" : "md:flex-row";
-  const backgroundPosition = reverse ? "bg-right" : "bg-left";
+  const backgroundPosition = reverse ? "md:bg-right md:bg-center" : "md:bg-left md:bg-center";
 
   // Effet parallax personnalisé pour mobile
   useEffect(() => {
@@ -80,7 +80,7 @@ export function ImageTextSplit({
     <section className={`flex flex-col bg-black ${flexDirection}`}>
       <div 
         ref={imageRef}
-        className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-contain md:bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out ${backgroundPosition}`}
+        className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-cover md:bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out md:bg-center image-section ${reverse ? 'reverse' : 'normal'} ${backgroundPosition}`}
         style={{ 
           backgroundImage: `url(${imageUrl})`,
           backgroundColor: '#1a1a1a',

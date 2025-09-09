@@ -18,15 +18,28 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // État pour le menu mobile
   const pathname = usePathname();
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   // Effet pour gérer le fond de la navbar au scroll
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const currentScrollY = window.scrollY;
+      
+      // Si on descend et qu'on a dépassé 50px -> navbar compacte
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsScrolled(true);
+      } 
+      // Si on monte (peu importe la position) -> navbar normale
+      else if (currentScrollY < lastScrollY) {
+        setIsScrolled(false);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener("scroll", handleScroll);
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   // Ferme le menu mobile quand le chemin change (l'utilisateur a navigué)
   useEffect(() => {

@@ -30,6 +30,23 @@ body {
   }
 }
 
+/* Améliorations pour l'affichage des images sur PC */
+@media (min-width: 768px) {
+  .image-section {
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+  }
+  
+  .image-section.reverse {
+    background-position: right center !important;
+  }
+  
+  .image-section.normal {
+    background-position: left center !important;
+  }
+}
+
 /* Pour les éléments en position fixed */
 .fixed-top {
   top: env(safe-area-inset-top);
