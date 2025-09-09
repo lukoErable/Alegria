@@ -37,7 +37,7 @@ export function Navbar() {
 
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
+    <header className="fixed top-0 left-0 w-full z-50" style={{ top: 'env(safe-area-inset-top)' }}>
       <nav
         className={`transition-colors duration-300 ${
           isScrolled || isMenuOpen // Le fond est sombre aussi si le menu est ouvert
@@ -51,7 +51,7 @@ export function Navbar() {
             href="/"
             className="text-2xl font-bold text-white uppercase tracking-wider"
           >
-          <Image className="rounded-full" src="/images/logo.png" alt="Alegria" width={100} height={100} />
+          <Image className="" src="/images/logo.png" alt="Alegria" width={100} height={100} />
           </Link>
 
           {/* Navigation pour Desktop */}
