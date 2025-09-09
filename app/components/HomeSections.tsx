@@ -5,7 +5,7 @@ import { OpeningHours } from './OpeningHours';
 
 export function HomeSections() {
   return (
-    <>
+    <div className="space-y-0">
       <section id="next-section">
       <ImageTextSplit
         imageUrl="/images/bar-1.jpg"
@@ -47,13 +47,15 @@ export function HomeSections() {
         reverse={true}
       />
     
-      <ImageTextSplit
-        imageUrl="/images/bar-8.jpg"
-        title="Soirées Thématiques"
-        description="Découvrez nos événements ponctuels : soirées à thème, musique live, DJ sets, dégustations spéciales. Des moments uniques et des expériences mémorables vous attendent."
-        buttonText="Découvrir les événements"
-        buttonLink="/events"
-      />
+      <div className="my-16 md:my-24">
+        <ImageTextSplit
+          imageUrl="/images/bar-8.jpg"
+          title="Soirées Thématiques"
+          description="Découvrez nos événements ponctuels : soirées à thème, musique live, DJ sets, dégustations spéciales. Des moments uniques et des expériences mémorables vous attendent."
+          buttonText="Découvrir les événements"
+          buttonLink="/events"
+        />
+      </div>
       <ImageTextSplit
         imageUrl="/images/bar-9.jpg"
         title="Terrasse d'Été"
@@ -80,6 +82,6 @@ export function HomeSections() {
         
        
       </section>
-    </>
+    </div>
   );
 }

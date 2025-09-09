@@ -77,7 +77,7 @@ export function ImageTextSplit({
   }, []);
 
   return (
-    <section className={`flex flex-col bg-black ${flexDirection}`}>
+    <section className={`flex flex-col bg-black ${flexDirection} my-8 md:my-12`}>
       <div 
         ref={imageRef}
         className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-contain md:bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out ${backgroundPosition}`}
