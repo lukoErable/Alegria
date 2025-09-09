@@ -27,29 +27,60 @@ export function ImageTextSplit({
   showContent = true,
 }: ImageTextSplitProps) {
   const imageRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
   const flexDirection = reverse ? "md:flex-row-reverse" : "md:flex-row";
   const backgroundPosition = reverse ? "bg-right" : "bg-left";
 
   // Effet parallax personnalisé pour mobile
   useEffect(() => {
     const handleScroll = () => {
-      if (imageRef.current && window.innerWidth < 768) {
-        const rect = imageRef.current.getBoundingClientRect();
+      if (window.innerWidth < 768) {
         const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-        imageRef.current.style.transform = `translateY(${rate}px)`;
+        const windowHeight = window.innerHeight;
+        
+        // Effet parallax pour l'image
+        if (imageRef.current) {
+          const rect = imageRef.current.getBoundingClientRect();
+          const elementTop = rect.top + scrolled;
+          
+          // Effet parallax plus subtil et fluide
+          const parallaxRate = 0.2; // Réduit pour un effet plus doux
+          const translateY = (scrolled - elementTop + windowHeight) * parallaxRate;
+          
+          imageRef.current.style.transform = `translateY(${translateY}px)`;
+        }
+        
+        // Effet parallax inverse pour le texte (compensation)
+        if (textRef.current) {
+          const rect = textRef.current.getBoundingClientRect();
+          const elementTop = rect.top + scrolled;
+          
+          // Effet parallax inverse pour maintenir l'alignement
+          const textParallaxRate = -0.1; // Inverse et plus faible
+          const translateY = (scrolled - elementTop + windowHeight) * textParallaxRate;
+          
+          textRef.current.style.transform = `translateY(${translateY}px)`;
+        }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Démarrer l'effet immédiatement
+    handleScroll();
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   return (
     <section className={`flex flex-col bg-black ${flexDirection}`}>
       <div 
         ref={imageRef}
-        className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-contain md:bg-fixed bg-no-repeat relative overflow-hidden ${backgroundPosition}`}
+        className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-contain md:bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out ${backgroundPosition}`}
         style={{ 
           backgroundImage: `url(${imageUrl})`,
           backgroundColor: '#1a1a1a',
@@ -61,8 +92,8 @@ export function ImageTextSplit({
         <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
-        <div className="w-full md:w-1/2 flex items-center justify-center bg-p-4 md:p-6">
-          <div className={`${showContent ? 'p-6 md:p-20 max-w-lg' : ''} w-full`}>
+        <div ref={textRef} className="w-full md:w-1/2 flex items-center justify-center bg-p-4 md:p-6 transition-transform duration-75 ease-out">
+          <div className={`${showContent ? 'p-6 md:p-20 max-w-lg z-10' : ''} w-full`}>
             {showContent && (
               <>
                 {title && (
