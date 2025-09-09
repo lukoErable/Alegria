@@ -97,10 +97,10 @@ export function HeroSlider() {
         </svg>
       </button>
 
-      {/* ===== INDICATEUR D'ÉTAT EN BAS À DROITE ===== */}
+      {/* ===== INDICATEUR D'ÉTAT - MOBILE AU CENTRE AU-DESSUS DU CHEVRON, DESKTOP EN BAS À DROITE ===== */}
       <button
         onClick={handleScrollToHours}
-        className="absolute bottom-6 right-6 z-20 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2 hover:bg-black/80 transition-all duration-300 group"
+        className="absolute bottom-24 left-1/2 transform -translate-x-1/2 md:left-auto md:right-6 md:bottom-6 md:transform-none z-20 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2 hover:bg-black/80 transition-all duration-300 group"
         aria-label="Voir les horaires d'ouverture"
       >
         <div

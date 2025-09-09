@@ -29,7 +29,7 @@ export default function EventsPage() {
   return (
     <div className="min-h-screen bg-gray-950 text-white py-12 sm:py-16 ">
       <div className="container mx-auto px-4">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-center mb-16 leading-tight mt-20">
+        <h1 className="text-3xl md:text-6xl font-extrabold text-center mb-16 leading-tight mt-20">
           Nos Événements
         </h1>
 
