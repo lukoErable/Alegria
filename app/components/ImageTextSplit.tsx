@@ -31,7 +31,7 @@ export function ImageTextSplit({
   return (
     <section className={`flex flex-col ${flexDirection}`}>
       <div 
-        className={`w-full md:w-1/2 min-h-[300px] md:min-h-[600px] bg-cover md:bg-contain bg-fixed bg-no-repeat relative ${backgroundPosition}`}
+        className={`w-full md:w-1/2 min-h-[300px] md:min-h-[600px] bg-fit md:bg-fit bg-fixed bg-no-repeat relative ${backgroundPosition}`}
         style={{ 
           backgroundImage: `url(${imageUrl})`,
           backgroundColor: '#1a1a1a'
