@@ -38,25 +38,25 @@ export function ImageTextSplit({
         const scrolled = window.pageYOffset;
         const windowHeight = window.innerHeight;
         
-        // Effet parallax pour l'image
+        // Effet parallax pour l'image (descend plus lentement)
         if (imageRef.current) {
           const rect = imageRef.current.getBoundingClientRect();
           const elementTop = rect.top + scrolled;
           
-          // Effet parallax plus subtil et fluide
-          const parallaxRate = 0.2; // Réduit pour un effet plus doux
+          // Effet parallax plus lent pour l'image
+          const parallaxRate = 0.1; // Plus lent
           const translateY = (scrolled - elementTop + windowHeight) * parallaxRate;
           
           imageRef.current.style.transform = `translateY(${translateY}px)`;
         }
         
-        // Effet parallax inverse pour le texte (compensation)
+        // Effet parallax pour le texte (monte et passe par-dessus)
         if (textRef.current) {
           const rect = textRef.current.getBoundingClientRect();
           const elementTop = rect.top + scrolled;
           
-          // Effet parallax inverse pour maintenir l'alignement
-          const textParallaxRate = -0.1; // Inverse et plus faible
+          // Effet parallax inverse plus prononcé pour que le texte monte
+          const textParallaxRate = -0.3; // Plus prononcé pour monter
           const translateY = (scrolled - elementTop + windowHeight) * textParallaxRate;
           
           textRef.current.style.transform = `translateY(${translateY}px)`;
@@ -80,7 +80,7 @@ export function ImageTextSplit({
     <section className={`flex flex-col bg-black ${flexDirection}`}>
       <div 
         ref={imageRef}
-        className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-contain md:bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out md:bg-center image-section ${reverse ? 'reverse' : 'normal'} ${backgroundPosition}`}
+        className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-cover md:bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out md:bg-center image-section ${reverse ? 'reverse' : 'normal'} ${backgroundPosition}`}
         style={{ 
           backgroundImage: `url(${imageUrl})`,
           backgroundColor: '#1a1a1a',
@@ -92,7 +92,7 @@ export function ImageTextSplit({
         <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
-        <div ref={textRef} className="w-full md:w-1/2 flex items-center justify-center bg-p-4 md:p-6 transition-transform duration-75 ease-out">
+        <div ref={textRef} className="w-full min-h-[400px] md:min-h-[500px] bg-black md:w-1/2 flex items-center justify-center bg-p-4 md:p-6 transition-transform duration-75 ease-out relative z-20">
           <div className={`${showContent ? 'p-6 md:p-20 max-w-lg z-10' : ''} w-full`}>
             {showContent && (
               <>
