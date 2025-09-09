@@ -26,22 +26,22 @@ export function ImageTextSplit({
   showContent = true,
 }: ImageTextSplitProps) {
   const flexDirection = reverse ? "md:flex-row-reverse" : "md:flex-row";
-  const backgroundPosition = reverse ? "bg-right" : "bg-lefbgt";
+  const backgroundPosition = reverse ? "bg-right" : "bg-left";
 
   return (
-    <section className={`flex flex-col ${flexDirection}`}>
+    <section className={`flex flex-col bg-black ${flexDirection}`}>
       <div 
-        className={`w-full md:w-1/2 min-h-[300px] md:min-h-[600px] bg-cover md:bg-contain bg-fixed bg-no-repeat relative ${backgroundPosition}`}
+        className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-contain bg-fixed bg-no-repeat relative ${backgroundPosition}`}
         style={{ 
           backgroundImage: `url(${imageUrl})`,
           backgroundColor: '#1a1a1a'
         }}
         aria-label={title}
       >
-        <div className="absolute inset-0 bg-black/5"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
-        <div className="w-full md:w-1/2 flex items-center justify-center bg-p-4 md:p-6black">
+        <div className="w-full md:w-1/2 flex items-center justify-center bg-p-4 md:p-6">
           <div className={`${showContent ? 'p-6 md:p-20 max-w-lg' : ''} w-full`}>
             {showContent && (
               <>
