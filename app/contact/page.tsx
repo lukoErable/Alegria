@@ -23,7 +23,7 @@ export default function ContactPage() {
       <div className="container mx-auto px-6 py-16 md:py-24">
         {/* Titre de la page */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-extrabold">
+          <h1 className="text-3xl font-extrabold">
             Nous <span className="text-indigo-400">Contacter</span>
           </h1>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto">

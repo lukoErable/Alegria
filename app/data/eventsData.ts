@@ -18,12 +18,12 @@ export const eventsData: Event[] = [
   {
     id: "anniversaire-alegria",
     title: "🎉 1er Anniversaire d'Alegria !",
-    isoDate: "2025-10-25",
-    date: "Vendredi 25 octobre 2025",
-    time: "18h00 - 04h00",
-    location: "Alegria Bar, Lausanne",
+    isoDate: "2025-09-6",
+    date: "Vendredi 6 septembre 2025",
+    time: "15h00 - 00h00",
+    location: "Alegria Bar, Valence",
     description:
-      "Célébrez avec nous le premier anniversaire d'Alegria ! Soirée exceptionnelle avec DJ Fred, cocktails gratuits, planches à volonté et surprises tout au long de la nuit. Un an déjà de bonheur partagé !",
+      "Célébrez avec nous le premier anniversaire d'Alegria ! Soirée exceptionnelle avec DJ, cocktails, planches. Un an déjà de bonheur partagé !",
     imageUrl: "/images/event-1.jpg",
     buttonText: "Fêter avec nous !",
     buttonLink: "/contact",
@@ -36,7 +36,7 @@ export const eventsData: Event[] = [
     time: "10h00 - 18h00",
     location: "Alegria Bar, Lausanne",
     description:
-      "Découvrez notre marché spécial avec des producteurs locaux ! Mets d'exception, breuvages artisanaux, fromages affinés et spécialités régionales. Une journée unique pour savourer les meilleurs produits de la région.",
+      "Découvrez le marché spécial avec des producteurs locaux ! Mets d'exception, breuvages artisanaux, fromages affinés et spécialités régionales. Une journée unique pour savourer les meilleurs produits de la région.",
     imageUrl: "/images/event-2.jpg",
     buttonText: "Découvrir le marché",
     buttonLink: "/contact",
