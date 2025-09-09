@@ -29,9 +29,9 @@ export function Navbar() {
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setIsScrolled(true);
       } 
-      // Si on monte (peu importe la position) -> navbar normale
+      // Si on monte -> navbar avec fond (sauf si on est tout en haut)
       else if (currentScrollY < lastScrollY) {
-        setIsScrolled(false);
+        setIsScrolled(currentScrollY > 0);
       }
       
       setLastScrollY(currentScrollY);

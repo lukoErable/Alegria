@@ -8,11 +8,13 @@ export interface MenuItem {
 export interface MenuCategory {
   title: string;
   items: MenuItem[];
+  type: 'drinks' | 'food';
 }
 
 export const menuData: MenuCategory[] = [
   {
     title: "Cocktails Signature",
+    type: "drinks",
     items: [
       {
         name: "Le Jardin Secret",
@@ -36,6 +38,7 @@ export const menuData: MenuCategory[] = [
   },
   {
     title: "Cocktails Classiques",
+    type: "drinks",
     items: [
       {
         name: "Mojito Classique",
@@ -71,6 +74,7 @@ export const menuData: MenuCategory[] = [
   },
   {
     title: "Cocktails Sans Alcool",
+    type: "drinks",
     items: [
       {
         name: "Virgin Mojito",
@@ -91,6 +95,7 @@ export const menuData: MenuCategory[] = [
   },
   {
     title: "Bières",
+    type: "drinks",
     items: [
       { name: "Bière Blonde (25/50cl)", price: "4/7€" },
       { name: "Bière IPA (25/50cl)", price: "5/8€" },
@@ -109,6 +114,7 @@ export const menuData: MenuCategory[] = [
   },
   {
     title: "Vins au Verre",
+    type: "drinks",
     items: [
       {
         name: "Pinot Noir (Rouge)",
@@ -128,27 +134,8 @@ export const menuData: MenuCategory[] = [
     ],
   },
   {
-    title: "Burgers Gourmands",
-    items: [
-      {
-        name: "Le Classique",
-        description: "Steak haché, cheddar, salade, tomate, oignons rouges",
-        price: "16€",
-      },
-      {
-        name: "Le Savoyard",
-        description: "Steak haché, reblochon, lardons, oignons confits",
-        price: "18€",
-      },
-      {
-        name: "Le Végétarien",
-        description: "Galette de légumes, avocat, roquette, sauce yaourt",
-        price: "15€",
-      },
-    ],
-  },
-  {
     title: "Planches à Partager",
+    type: "food",
     items: [
       {
         name: "Planche de Fromages",
@@ -169,6 +156,7 @@ export const menuData: MenuCategory[] = [
   },
   {
     title: "Softs & Boissons Chaudes",
+    type: "drinks",
     items: [
       { name: "Coca-Cola / Zéro (33cl)", price: "4.5€" },
       {

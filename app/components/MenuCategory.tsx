@@ -20,7 +20,7 @@ export function MenuCategory({ category }: MenuCategoryProps) {
                 <p className="text-gray-400 max-w-md">{item.description}</p>
               )}
             </div>
-            <p className="text-xl font-bold text-white pl-4">{item.price}</p>
+            <p className="text-lg font-semibold text-white pl-4">{item.price}</p>
           </div>
         ))}
       </div>
