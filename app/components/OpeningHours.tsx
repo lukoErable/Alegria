@@ -10,7 +10,7 @@ export function OpeningHours() {
   return (
     <div className="h-full w-full flex flex-col justify-center items-center p-6">
       {/* Status compact */}
-      <div className="flex items-center mb-6">
+      <div className="flex items-center mb-12">
         <div
           className={`w-3 h-3 rounded-full mr-3 ${
             status.isOpen ? "bg-green-400" : "bg-red-500"
@@ -44,8 +44,8 @@ export function OpeningHours() {
               {item.day}
             </span>
             <span
-              className={`text-sm font-mono ${
-                index === todayIndex ? "text-indigo-100" : "text-gray-400"
+              className={`text-sm ${
+                index === todayIndex ? "text-white" : "text-gray-300"
               }`}
             >
               {item.open === null

@@ -1,3 +1,4 @@
+"use client";
 import { ImageTextSplit } from './ImageTextSplit';
 import { Map } from './Map';
 import { OpeningHours } from './OpeningHours';
