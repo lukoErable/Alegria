@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, FormEvent } from "react";
-import { MapPinIcon, EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
-import { FaInstagram, FaFacebookF } from "react-icons/fa";
+import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/solid";
+import { FormEvent, useState } from "react";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 
 export default function ContactPage() {
   const [status, setStatus] = useState("");
@@ -128,8 +128,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-bold text-white text-lg">Notre Bar</h3>
                     <p className="text-gray-400 mt-1">
-                      Alegria Bar, Place de la Gare 5<br />
-                      1003 Lausanne, Suisse
+                    15 Place Saint Jean, Valence<br />
+                    Rhone-Alpes, France 26000
                     </p>
                   </div>
                 </li>

@@ -19,7 +19,7 @@ const slides = [
   },
   {
     image: "/images/bar-7.jpg",
-    headline: "Cocktails & Planches",
+    headline: "Planches & Grignotages",
     subheadline: "Pour accompagner vos boissons préférées.",
   },
 ];

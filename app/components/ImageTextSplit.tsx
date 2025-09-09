@@ -7,6 +7,7 @@ interface ImageTextSplitProps {
   description?: string;
   buttonText?: string;
   buttonLink?: string;
+  onButtonClick?: () => void;
   reverse?: boolean;
   children?: React.ReactNode;
   showContent?: boolean;
@@ -18,6 +19,7 @@ export function ImageTextSplit({
   description,
   buttonText,
   buttonLink = "#",
+  onButtonClick,
   reverse = false,
   children,
   showContent = true,
@@ -51,12 +53,21 @@ export function ImageTextSplit({
                   <p className="text-gray-300 mb-8">{description}</p>
                 )}
                 {buttonText && (
-                  <Link
-                    href={buttonLink}
-                    className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full transition-transform duration-300 hover:scale-105"
-                  >
-                    {buttonText}
-                  </Link>
+                  onButtonClick ? (
+                    <button
+                      onClick={onButtonClick}
+                      className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full transition-transform duration-300 hover:scale-105"
+                    >
+                      {buttonText}
+                    </button>
+                  ) : (
+                    <Link
+                      href={buttonLink}
+                      className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full transition-transform duration-300 hover:scale-105"
+                    >
+                      {buttonText}
+                    </Link>
+                  )
                 )}
               </>
             )}

@@ -31,7 +31,7 @@ export function HomeSections() {
       <ImageTextSplit
         imageUrl="/images/bar-4.jpg"
         title="Votre Nouveau QG"
-        description="Plus qu'un bar, un lieu de vie et de rencontres. Privatisez notre espace pour vos événements et créez des souvenirs mémorables avec nous."
+        description="Plus qu'un bar, un lieu de vie et de rencontres. Participez à nos événements et créez des souvenirs mémorables avec nous."
         buttonText="Nous Contacter"
         buttonLink="/contact"
         reverse={true}
@@ -41,12 +41,18 @@ export function HomeSections() {
         title="Happy Hour Quotidien"
         description="Chaque jour de 17h à 19h, profitez de nos cocktails à prix réduits. L'occasion parfaite de découvrir nos créations ou de retrouver vos classiques préférés dans une ambiance détendue."
         buttonText="Voir les horaires"
-        buttonLink="/contact"
+        buttonLink="#"
+        onButtonClick={() => {
+          const hoursSection = document.querySelector('[data-hours-section]');
+          if (hoursSection) {
+            hoursSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
       />
       <ImageTextSplit
         imageUrl="/images/bar-6.jpg"
         title="Soirées Thématiques"
-        description="Tous les vendredis et samedis, plongez dans nos soirées à thème : musique live, DJ sets, dégustations spéciales. Chaque week-end apporte son lot de surprises et de nouvelles expériences."
+        description="Découvrez nos événements ponctuels : soirées à thème, musique live, DJ sets, dégustations spéciales. Des moments uniques et des expériences mémorables vous attendent."
         buttonText="Découvrir les événements"
         buttonLink="/events"
         reverse={true}
