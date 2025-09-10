@@ -7,6 +7,7 @@ interface ImageTextSplitProps {
   imageUrl: string;
   title?: string;
   description?: string;
+  customContent?: React.ReactNode; // Nouveau prop pour du contenu personnalisé
   buttonText?: string;
   buttonLink?: string;
   onButtonClick?: () => void;
@@ -19,6 +20,7 @@ export function ImageTextSplit({
   imageUrl,
   title,
   description,
+  customContent,
   buttonText,
   buttonLink = "#",
   onButtonClick,
@@ -99,7 +101,11 @@ export function ImageTextSplit({
                     {title}
                   </h2>
                 )}
-                {description && (
+                {customContent ? (
+                  <div className="mb-6 md:mb-8">
+                    {customContent}
+                  </div>
+                ) : description && (
                   <p className="text-gray-300 mb-6 md:mb-8 text-sm md:text-base">{description}</p>
                 )}
                 {buttonText && (

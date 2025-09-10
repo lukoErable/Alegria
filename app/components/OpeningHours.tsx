@@ -34,26 +34,26 @@ export function OpeningHours() {
       </div>
 
       {/* Liste compacte des horaires */}
-      <div className="w-full max-w-sm space-y-1">
+      <div className="w-full max-w-sm">
         {hoursData.map((item, index) => (
           <div
             key={item.day}
-            className={`flex justify-between items-center py-2 px-4 rounded-md transition-colors duration-200 ${
+            className={`flex justify-between items-center py-2 rounded-md transition-colors duration-200 ${
               index === todayIndex 
-                ? "border-gray-500 border shadow-lg shadow-gray-500/20" 
+                ? "" 
                 : ""
             }`}
           >
             <span
               className={`text-sm font-medium ${
-                index === todayIndex ? "text-white" : "text-gray-300"
+                index === todayIndex ? "text-green-400" : "text-gray-300"
               }`}
             >
               {item.day}
             </span>
             <span
               className={`text-sm ${
-                index === todayIndex ? "text-white" : "text-gray-300"
+                index === todayIndex ? "text-green-400" : "text-gray-300"
               }`}
             >
               {item.open === null
