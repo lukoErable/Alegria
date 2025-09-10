@@ -23,10 +23,10 @@ export default function ContactPage() {
       <div className="container mx-auto px-6 py-16 md:py-24">
         {/* Titre de la page */}
         <div className="text-center mb-16">
-          <h1 className="text-3xl font-extrabold">
-            Nous <span className="text-indigo-400">Contacter</span>
+          <h1 className="text-3xl font-extrabold text-white tracking-wide">
+            Nous Contacter
           </h1>
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
             Une question, une réservation de groupe ou une envie de privatiser ?
             N'hésitez pas à nous écrire.
           </p>
@@ -38,7 +38,7 @@ export default function ContactPage() {
           <div className="w-full md:w-2/3">
             <form
               onSubmit={handleSubmit}
-              className="bg-gray-900/50 border border-gray-800 p-8 rounded-lg shadow-xl space-y-6"
+              className="bg-gray-800/50 border border-gray-700 p-8 rounded-lg shadow-xl space-y-6"
             >
               <div className="flex flex-col sm:flex-row gap-6">
                 <div className="w-full">
@@ -53,7 +53,7 @@ export default function ContactPage() {
                     id="name"
                     name="name"
                     required
-                    className="w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition"
                   />
                 </div>
                 <div className="w-full">
@@ -68,7 +68,7 @@ export default function ContactPage() {
                     id="email"
                     name="email"
                     required
-                    className="w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition"
                   />
                 </div>
               </div>
@@ -84,7 +84,7 @@ export default function ContactPage() {
                   id="subject"
                   name="subject"
                   required
-                  className="w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                  className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition"
                 />
               </div>
               <div>
@@ -99,13 +99,13 @@ export default function ContactPage() {
                   name="message"
                   rows={5}
                   required
-                  className="w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                  className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition"
                 ></textarea>
               </div>
               <div className="flex items-center justify-between">
                 <button
                   type="submit"
-                  className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-md transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+                  className="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-md transition-all duration-300 shadow-lg hover:shadow-gray-500/50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-800 border border-gray-600"
                 >
                   Envoyer le Message
                 </button>
@@ -114,7 +114,7 @@ export default function ContactPage() {
             </form>
           </div>
 
-          <div className="bg-gray-950 p-8 rounded-lg border border-gray-800 shadow-xl h-full flex flex-col">
+          <div className="bg-gray-800 p-8 rounded-lg border border-gray-700 shadow-xl h-full flex flex-col">
             <div>
               <h2 className="text-3xl font-bold mb-8 text-white">
                 Retrouvez-nous
@@ -122,12 +122,12 @@ export default function ContactPage() {
               <ul className="space-y-6">
                 {/* Item 1: Adresse */}
                 <li className="flex items-start gap-5">
-                  <div className="flex-shrink-0 bg-indigo-600/10 p-3 rounded-full">
-                    <MapPinIcon className="h-6 w-6 text-indigo-400" />
+                  <div className="flex-shrink-0 bg-gray-700 p-3 rounded-full">
+                    <MapPinIcon className="h-6 w-6 text-gray-300" />
                   </div>
                   <div>
                     <h3 className="font-bold text-white text-lg">Notre Bar</h3>
-                    <p className="text-gray-400 mt-1">
+                    <p className="text-gray-300 mt-1">
                     15 Place Saint Jean, Valence<br />
                     Rhone-Alpes, France 26000
                     </p>
@@ -136,14 +136,14 @@ export default function ContactPage() {
 
                 {/* Item 2: Email */}
                 <li className="flex items-start gap-5">
-                  <div className="flex-shrink-0 bg-indigo-600/10 p-3 rounded-full">
-                    <EnvelopeIcon className="h-6 w-6 text-indigo-400" />
+                  <div className="flex-shrink-0 bg-gray-700 p-3 rounded-full">
+                    <EnvelopeIcon className="h-6 w-6 text-gray-300" />
                   </div>
                   <div>
                     <h3 className="font-bold text-white text-lg">Email</h3>
                     <a
                       href="mailto:contact@alegria-bar.ch"
-                      className="text-gray-400 hover:text-indigo-300 transition-colors duration-300 border-b border-dotted border-gray-600 hover:border-indigo-400"
+                      className="text-gray-300 hover:text-white transition-colors duration-300 border-b border-dotted border-gray-600 hover:border-gray-400"
                     >
                       contact@alegria-bar.ch
                     </a>
@@ -152,14 +152,14 @@ export default function ContactPage() {
 
                 {/* Item 3: Téléphone */}
                 <li className="flex items-start gap-5">
-                  <div className="flex-shrink-0 bg-indigo-600/10 p-3 rounded-full">
-                    <PhoneIcon className="h-6 w-6 text-indigo-400" />
+                  <div className="flex-shrink-0 bg-gray-700 p-3 rounded-full">
+                    <PhoneIcon className="h-6 w-6 text-gray-300" />
                   </div>
                   <div>
                     <h3 className="font-bold text-white text-lg">Téléphone</h3>
                     <a
                       href="tel:+41213456789"
-                      className="text-gray-400 hover:text-indigo-300 transition-colors duration-300 border-b border-dotted border-gray-600 hover:border-indigo-400"
+                      className="text-gray-300 hover:text-white transition-colors duration-300 border-b border-dotted border-gray-600 hover:border-gray-400"
                     >
                       021 345 67 89
                     </a>
@@ -171,13 +171,13 @@ export default function ContactPage() {
             </div>
 
             <div className="mt-auto pt-8">
-              <div className="border-t border-gray-800 pt-6 flex items-center justify-center gap-6">
+              <div className="border-t border-gray-700 pt-6 flex items-center justify-center gap-6">
                 <a
                   href="https://instagram.com/alegria.bar"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Suivez-nous sur Instagram"
-                  className="text-gray-500 hover:text-indigo-400 transition-colors duration-300"
+                  className="text-gray-400 hover:text-white transition-colors duration-300"
                 >
                   <FaInstagram size={28} />
                 </a>
@@ -186,7 +186,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Suivez-nous sur Facebook"
-                  className="text-gray-500 hover:text-indigo-400 transition-colors duration-300"
+                  className="text-gray-400 hover:text-white transition-colors duration-300"
                 >
                   <FaFacebookF size={28} />
                 </a>

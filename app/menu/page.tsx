@@ -1,29 +1,53 @@
 // app/menu/page.tsx
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { MenuCategory } from "../components/MenuCategory";
 import { MenuFilter } from "../components/MenuFilter";
 import { menuData } from "../data/menuData";
 
 export default function MenuPage() {
   const [activeFilter, setActiveFilter] = useState<'drinks' | 'food'>('drinks');
+  const [viewedCategories, setViewedCategories] = useState<Set<'drinks' | 'food'>>(new Set(['drinks']));
+  const [scrollPositions, setScrollPositions] = useState<{ [key: string]: number }>({});
+  const contentRef = useRef<HTMLDivElement>(null);
   
   const filteredCategories = menuData.filter(category => category.type === activeFilter);
 
+  const handleFilterChange = (filter: 'drinks' | 'food') => {
+    // Sauvegarder la position de scroll actuelle avant de changer
+    setScrollPositions(prev => ({
+      ...prev,
+      [activeFilter]: window.scrollY
+    }));
+    
+    setActiveFilter(filter);
+    
+    // Si c'est la première fois qu'on regarde cette catégorie, scroll vers le haut
+    if (!viewedCategories.has(filter)) {
+      setViewedCategories(prev => new Set([...prev, filter]));
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    } else {
+      // Si on revient à une catégorie déjà visitée, restaurer la position
+      const savedPosition = scrollPositions[filter] || 0;
+      window.scrollTo({ top: savedPosition, behavior: 'auto' });
+    }
+  };
+
   return (
-    <div className="bg-black pt-24">
-      {/* pt-24 pour passer sous la navbar */}
-      <div className="container mx-auto px-6 py-16">
-        <h1 className="text-5xl font-extrabold text-center text-white mb-16">
-          Notre <span className="text-indigo-400">Carte</span>
-        </h1>
-        
-        <MenuFilter 
-          onFilterChange={setActiveFilter} 
-          activeFilter={activeFilter} 
-        />
-        
+    <div className="bg-black overflow-hidden">
+      {/* MenuFilter fixe en haut */}
+      <div className="fixed top-0 left-0 right-0 z-40 bg-black/0">
+        <div className="container mx-auto pt-32">
+          <MenuFilter 
+            onFilterChange={handleFilterChange} 
+            activeFilter={activeFilter} 
+          />
+        </div>
+      </div>
+      
+      {/* Contenu du menu avec marge pour le filtre fixe */}
+      <div ref={contentRef} className="pt-48">
         {filteredCategories.map((category, index) => (
           <MenuCategory key={index} category={category} />
         ))}

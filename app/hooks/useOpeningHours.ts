@@ -12,7 +12,7 @@ const hoursData = [
 ];
 
 export function useOpeningHours() {
-  const [status, setStatus] = useState({ isOpen: false, message: "" });
+  const [status, setStatus] = useState({ isOpen: false, message: "", nextInfo: "" });
   const [todayIndex, setTodayIndex] = useState(0);
 
   useEffect(() => {
@@ -20,8 +20,6 @@ export function useOpeningHours() {
     const currentDayIndex = now.getDay();
     const currentHour = now.getHours();
     
-    // Déterminer le jour d'ouverture actuel
-    // Si on est après minuit (0-2h), on considère qu'on est encore dans la journée précédente
     let actualDayIndex = currentDayIndex;
     if (currentHour >= 0 && currentHour < 2) {
       actualDayIndex = (currentDayIndex - 1 + 7) % 7;
@@ -33,12 +31,10 @@ export function useOpeningHours() {
     
     if (today.open !== null && today.close !== null) {
       if (today.close > today.open) {
-        // Horaires normaux (ex: 10h-18h)
         if (currentHour >= today.open && currentHour < today.close) {
           currentlyOpen = true;
         }
       } else {
-        // Horaires qui passent minuit (ex: 17h-2h)
         if (currentHour >= today.open || currentHour < today.close) {
           currentlyOpen = true;
         }
@@ -48,28 +44,77 @@ export function useOpeningHours() {
     if (currentlyOpen) {
       const closingHour = today.close;
       if (closingHour !== null) {
+        const closingTime = formatTime(closingHour);
         if (today.close > today.open) {
-          // Horaires normaux
           if (closingHour - currentHour === 1) {
-            setStatus({ isOpen: true, message: "Ferme bientôt" });
+            setStatus({ 
+              isOpen: true, 
+              message: "Ferme bientôt", 
+              nextInfo: `Fermeture à ${closingTime}` 
+            });
           } else {
-            setStatus({ isOpen: true, message: "Ouvert Actuellement" });
+            setStatus({ 
+              isOpen: true, 
+              message: "Ouvert Actuellement", 
+              nextInfo: `Fermeture à ${closingTime}` 
+            });
           }
         } else {
-          // Horaires qui passent minuit
           if (currentHour >= today.open && closingHour - currentHour === 1) {
-            setStatus({ isOpen: true, message: "Ferme bientôt" });
+            setStatus({ 
+              isOpen: true, 
+              message: "Ferme bientôt", 
+              nextInfo: `Fermeture à ${closingTime}` 
+            });
           } else if (currentHour < today.close && currentHour === today.close - 1) {
-            setStatus({ isOpen: true, message: "Ferme bientôt" });
+            setStatus({ 
+              isOpen: true, 
+              message: "Ferme bientôt", 
+              nextInfo: `Fermeture à ${closingTime}` 
+            });
           } else {
-            setStatus({ isOpen: true, message: "Ouvert Actuellement" });
+            setStatus({ 
+              isOpen: true, 
+              message: "Ouvert Actuellement", 
+              nextInfo: `Fermeture à ${closingTime}` 
+            });
           }
         }
       } else {
-        setStatus({ isOpen: true, message: "Ouvert Actuellement" });
+        setStatus({ 
+          isOpen: true, 
+          message: "Ouvert Actuellement", 
+          nextInfo: "" 
+        });
       }
     } else {
-      setStatus({ isOpen: false, message: "Fermé Actuellement" });
+      let nextOpenDay = null;
+      let nextOpenTime = null;
+      
+      for (let i = 1; i <= 7; i++) {
+        const nextDayIndex = (actualDayIndex + i) % 7;
+        const nextDay = hoursData[nextDayIndex];
+        
+        if (nextDay.open !== null) {
+          nextOpenDay = nextDay.day;
+          nextOpenTime = formatTime(nextDay.open);
+          break;
+        }
+      }
+      
+      if (nextOpenDay && nextOpenTime) {
+        setStatus({ 
+          isOpen: false, 
+          message: "Fermé Actuellement", 
+          nextInfo: `Réouverture ${nextOpenDay} à ${nextOpenTime}` 
+        });
+      } else {
+        setStatus({ 
+          isOpen: false, 
+          message: "Fermé Actuellement", 
+          nextInfo: "" 
+        });
+      }
     }
   }, []);
 

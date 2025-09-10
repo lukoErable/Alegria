@@ -21,9 +21,6 @@ export function HomeSections() {
           reverse={true}
        />
       </section>
-
-    
-
       <ImageTextSplit
         imageUrl="/images/jambon.jpg"
         title="Gourmandises à Partager"
@@ -66,8 +63,8 @@ export function HomeSections() {
 
       />
 
-      {/* Section avec Map à la place de l'image */}
-      <section className="flex flex-col md:flex-row-reverse">
+      {/* Section avec Map en position absolue */}
+      <section className="relative flex flex-col md:flex-row-reverse">
          {/* Carré noir avec horaires */}
          <div 
           className="w-full md:w-1/2 h-[450px] md:h-[600px] bg-black flex items-center justify-center p-4 md:p-8"
@@ -79,8 +76,6 @@ export function HomeSections() {
         <div className="w-full md:w-1/2 h-[450px] md:h-[600px]">
           <Map />
         </div>
-        
-       
       </section>
     </div>
   );

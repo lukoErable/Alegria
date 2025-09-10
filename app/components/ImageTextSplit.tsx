@@ -31,40 +31,33 @@ export function ImageTextSplit({
   const flexDirection = reverse ? "md:flex-row-reverse" : "md:flex-row";
   const backgroundPosition = reverse ? "md:bg-right md:bg-center" : "md:bg-left md:bg-center";
 
-  // Effet parallax personnalisé pour mobile
   useEffect(() => {
     const handleScroll = () => {
       if (window.innerWidth < 768) {
         const scrolled = window.pageYOffset;
         const windowHeight = window.innerHeight;
         
-        // Effet parallax pour l'image
         if (imageRef.current) {
           const rect = imageRef.current.getBoundingClientRect();
           const elementTop = rect.top + scrolled;
           
-          // Effet parallax plus subtil et fluide
-          const parallaxRate = 0.2; // Réduit pour un effet plus doux
+          const parallaxRate = 0.23; 
           const translateY = (scrolled - elementTop + windowHeight) * parallaxRate;
           
           imageRef.current.style.transform = `translateY(${translateY}px)`;
         }
         
-        // Effet parallax inverse pour le texte (compensation)
         if (textRef.current) {
           const rect = textRef.current.getBoundingClientRect();
           const elementTop = rect.top + scrolled;
           
-          // Effet parallax inverse pour maintenir l'alignement
-          const textParallaxRate = -0.1; // Inverse et plus faible
+          const textParallaxRate = -0.1;
           const translateY = (scrolled - elementTop + windowHeight) * textParallaxRate;
           
           textRef.current.style.transform = `translateY(${translateY}px)`;
         }
       }
     };
-
-    // Démarrer l'effet immédiatement
     handleScroll();
     
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -80,7 +73,7 @@ export function ImageTextSplit({
     <section className={`flex flex-col bg-black ${flexDirection} gap-0`}>
       <div 
         ref={imageRef}
-        className={`w-full md:w-1/2 min-h-[600px] md:min-h-[700px] bg-cover md:bg-cover md:bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out md:bg-center image-section ${reverse ? 'reverse' : 'normal'} ${backgroundPosition}`}
+        className={`w-full md:w-1/2 min-h-screen md:min-h-[700px] bg-cover md:bg-cover md:bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out md:bg-center image-section ${reverse ? 'reverse' : 'normal'} ${backgroundPosition}`}
         style={{ 
           backgroundImage: `url(${imageUrl})`,
           backgroundColor: '#000000',
@@ -89,11 +82,16 @@ export function ImageTextSplit({
         }}
         aria-label={title}
       >
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div 
+          className="absolute inset-0 md:hidden"
+          style={{
+            background: 'radial-gradient(ellipse 100% 50% at center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1))'
+          }}
+        ></div>
       </div>
 
         <div ref={textRef} className="w-full md:w-1/2 flex items-center justify-center transition-transform duration-75 ease-out">
-          <div className={`${showContent ? 'p-6 md:p-20 max-w-lg z-10' : ''} w-full`}>
+          <div className={`${showContent ? 'p-6 md:p-20 max-w-lg z-10' : ''} w-full ${reverse ? 'text-right md:text-left' : 'text-left md:text-center'}`}>
             {showContent && (
               <>
                 {title && (
@@ -108,14 +106,14 @@ export function ImageTextSplit({
                   onButtonClick ? (
                     <button
                       onClick={onButtonClick}
-                      className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full transition-transform duration-300 hover:scale-105"
+                      className="inline-block px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 border border-gray-600"
                     >
                       {buttonText}
                     </button>
                   ) : (
                     <Link
                       href={buttonLink}
-                      className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full transition-transform duration-300 hover:scale-105"
+                      className="inline-block px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 border border-gray-600"
                     >
                       {buttonText}
                     </Link>

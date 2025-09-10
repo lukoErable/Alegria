@@ -11,16 +11,22 @@ const slides = [
     image: "/images/bar-8.jpg",
     headline: "Cocktails Signature",
     subheadline: "Créativité et saveurs uniques dans chaque verre.",
+    buttonText: "Découvrir la carte",
+    buttonLink: "/menu",
   },
   {
     image: "/images/bar-2.jpg",
     headline: "Ambiance Inoubliable",
     subheadline: "Le lieu parfait pour vos soirées.",
+    buttonText: "Nous contacter",
+    buttonLink: "/contact",
   },
   {
     image: "/images/bar-7.jpg",
     headline: "Planches & Grignotages",
     subheadline: "Pour accompagner vos boissons préférées.",
+    buttonText: "Voir les événements",
+    buttonLink: "/events",
   },
 ];
 
@@ -61,14 +67,14 @@ export function HeroSlider() {
               <h1 className="text-5xl md:text-7xl font-extrabold uppercase tracking-tight drop-shadow-lg">
                 {slide.headline}
               </h1>
-              <p className="mt-4 text-lg md:text-xl max-w-2xl drop-shadow-md">
+              <p className="mt-4 text-lg md:text-xl max-w-2xl drop-shadow-lg text-gray-100">
                 {slide.subheadline}
               </p>
               <Link
-                href="/menu"
-                className="mt-8 px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full transition-transform duration-300 hover:scale-105"
+                href={slide.buttonLink}
+                className="mt-8 px-8 py-3 bg-gray-800/80 hover:bg-gray-700/80 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 border border-gray-600/50 backdrop-blur-sm"
               >
-                Découvrir la carte
+                {slide.buttonText}
               </Link>
             </div>
           </div>
@@ -100,7 +106,7 @@ export function HeroSlider() {
       {/* ===== INDICATEUR D'ÉTAT - MOBILE AU CENTRE AU-DESSUS DU CHEVRON, DESKTOP EN BAS À DROITE ===== */}
       <button
         onClick={handleScrollToHours}
-        className="absolute bottom-24 left-1/2 transform -translate-x-1/2 md:left-auto md:right-6 md:bottom-6 md:transform-none z-20 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2 hover:bg-black/80 transition-all duration-300 group"
+        className="absolute bottom-24 left-1/2 transform -translate-x-1/2 md:left-auto md:right-6 md:bottom-6 md:transform-none z-20 bg-gray-800/80 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2 hover:bg-gray-700/80 transition-all duration-300 group border border-gray-600/50"
         aria-label="Voir les horaires d'ouverture"
       >
         <div
@@ -113,7 +119,7 @@ export function HeroSlider() {
           }`}
         ></div>
         <span
-          className={`text-sm font-medium ${
+          className={`text-sm font-semibold ${
             status.isOpen 
               ? status.message === "Ferme bientôt" 
                 ? "text-orange-400" 
