@@ -58,6 +58,20 @@ body {
   }
 }
 
+/* Désactiver background-attachment: fixed sur mobile pour éviter les problèmes iOS */
+@media (max-width: 767px) {
+  .image-section {
+    background-attachment: scroll !important;
+  }
+  
+  /* Améliorer l'effet parallax sur mobile */
+  .parallax-mobile {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+}
+
 /* Pour les éléments en position fixed */
 .fixed-top {
   top: env(safe-area-inset-top);

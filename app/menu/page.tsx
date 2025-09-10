@@ -37,7 +37,7 @@ export default function MenuPage() {
   return (
     <div className="bg-black overflow-hidden">
       {/* MenuFilter fixe en haut */}
-      <div className="fixed top-0 left-0 right-0 z-40 bg-black/0">
+      <div className="fixed -bottom-8 left-0 right-0 z-40 bg-black/0">
         <div className="container mx-auto pt-32">
           <MenuFilter 
             onFilterChange={handleFilterChange} 
@@ -47,7 +47,7 @@ export default function MenuPage() {
       </div>
       
       {/* Contenu du menu avec marge pour le filtre fixe */}
-      <div ref={contentRef} className="pt-48">
+      <div ref={contentRef} className="pt-28">
         {filteredCategories.map((category, index) => (
           <MenuCategory key={index} category={category} />
         ))}

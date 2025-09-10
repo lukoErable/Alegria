@@ -1,6 +1,6 @@
 // app/components/MenuCategory.tsx
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { MenuCategory as MenuCategoryType } from "../data/menuData";
 
 interface MenuCategoryProps {
@@ -19,20 +19,79 @@ const categoryImages: { [key: string]: string } = {
 
 export function MenuCategory({ category }: MenuCategoryProps) {
   const imageRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   
   const selectedImage = categoryImages[category.title] || "/images/bar-1.jpg";
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Gestionnaire pour vérifier que l'image est chargée
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setImageLoaded(true);
+    img.onerror = () => {
+      console.error(`Erreur de chargement de l'image: ${selectedImage}`);
+      setImageLoaded(false);
+    };
+    img.src = selectedImage;
+  }, [selectedImage]);
+
+  useEffect(() => {
+    if (!isMobile || !imageRef.current || !containerRef.current) return;
+
+    const handleScroll = () => {
+      const container = containerRef.current;
+      const image = imageRef.current;
+      if (!container || !image) return;
+
+      const rect = container.getBoundingClientRect();
+      const scrolled = window.pageYOffset;
+      
+      // Calculer la position relative de cette catégorie par rapport au scroll
+      const containerTop = rect.top + scrolled;
+      const containerHeight = rect.height;
+      const viewportHeight = window.innerHeight;
+      
+      // Effet parallax basé sur la position de cette catégorie spécifique
+      const parallaxOffset = (scrolled - containerTop + viewportHeight) * -0.2;
+      
+      image.style.transform = `translateY(${parallaxOffset}px)`;
+    };
+
+    // Appeler handleScroll immédiatement pour positionner l'image correctement
+    handleScroll();
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobile]);
+
   return (
-    <div className="relative overflow-hidden rounded-lg z-20">
+    <div ref={containerRef} className="relative overflow-hidden rounded-lg z-20">
       {selectedImage && (
         <div 
           ref={imageRef}
-          className="absolute inset-0 bg-cover bg-center"
+          className={`absolute inset-0 bg-cover bg-center ${isMobile ? 'parallax-mobile' : ''}`}
           style={{
             backgroundImage: `url(${selectedImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            backgroundAttachment: 'fixed'
+            backgroundAttachment: isMobile ? 'scroll' : 'fixed',
+            backgroundRepeat: 'no-repeat',
+            height: isMobile ? '100%' : '100%',
+            top: isMobile ? '0%' : '0',
+            left: isMobile ? '-5%' : '0',
+            width: isMobile ? '110%' : '100%'
           }}
         />
       )}
