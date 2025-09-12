@@ -27,9 +27,9 @@ export default function EventsPage() {
     );
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white py-12 sm:py-16 ">
+    <div className="min-h-screen bg-black text-white pt-8 sm:py-16 ">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl md:text-6xl font-extrabold text-center mb-16 leading-tight mt-20">
+        <h1 className="text-3xl md:text-6xl font-extrabold text-center mb-8 leading-tight mt-20">
           Nos Événements
         </h1>
 
@@ -54,7 +54,7 @@ export default function EventsPage() {
           {pastEvents.length > 0 && (
             <div className="col-span-full relative text-center my-12">
               <hr className="border-gray-800" />
-              <h2 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-950 px-6 text-xl font-bold text-gray-500 uppercase tracking-widest">
+              <h2 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black px-6 text-xl font-bold text-gray-500 uppercase tracking-widest">
                 Événements Passés
               </h2>
             </div>

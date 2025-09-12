@@ -77,7 +77,7 @@ export function EventCard({ event, index, isPast }: EventCardProps) {
       <div className="p-4 space-y-3">
         {/* Date et heure */}
         <div className="flex items-center text-gray-400 text-sm">
-          <CalendarDaysIcon className="h-4 w-4 mr-2 text-indigo-400" />
+          <CalendarDaysIcon className="h-4 w-4 mr-2 text-white" />
           <span className="font-medium">{event.date}</span>
           <span className="mx-2">•</span>
           <span>{event.time}</span>
@@ -95,7 +95,7 @@ export function EventCard({ event, index, isPast }: EventCardProps) {
             className={`block w-full text-center px-4 py-2 text-sm font-bold rounded-lg transition-all duration-300 ${
               isPast
                 ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-                : "bg-indigo-600 hover:bg-indigo-500 text-white hover:scale-105"
+                : "bg-gray-600 hover:bg-gray-500 text-white hover:scale-105"
             }`}
             aria-disabled={isPast}
             onClick={(e) => isPast && e.preventDefault()}

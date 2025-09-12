@@ -19,8 +19,22 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-black text-white pt-24">
-      <div className="container mx-auto px-6 py-16 md:py-24">
+    <div className="bg-black text-white relative -z-10">
+      {/* Background Image fixe */}
+      <div 
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/images/bar-1.jpg')",
+          filter: "brightness(0.2)"
+        }}
+      />
+      
+      {/* Overlay sombre */}
+      <div className="fixed inset-0 bg-black/80" />
+      
+      {/* Content */}
+      <div className="relative z-10 pt-24">
+        <div className="container mx-auto px-6 py-16 md:py-24">
         {/* Titre de la page */}
         <div className="text-center mb-16">
           <h1 className="text-3xl font-extrabold text-white tracking-wide">
@@ -38,7 +52,7 @@ export default function ContactPage() {
           <div className="w-full md:w-2/3">
             <form
               onSubmit={handleSubmit}
-              className="bg-gray-800/50 border border-gray-700 p-8 rounded-lg shadow-xl space-y-6"
+              className="bg-black/60 backdrop-blur-sm border border-gray-800 p-8 rounded-lg shadow-2xl space-y-6"
             >
               <div className="flex flex-col sm:flex-row gap-6">
                 <div className="w-full">
@@ -53,7 +67,7 @@ export default function ContactPage() {
                     id="name"
                     name="name"
                     required
-                    className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition"
+                    className="w-full bg-black/40 border border-gray-700 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition backdrop-blur-sm"
                   />
                 </div>
                 <div className="w-full">
@@ -68,7 +82,7 @@ export default function ContactPage() {
                     id="email"
                     name="email"
                     required
-                    className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition"
+                    className="w-full bg-black/40 border border-gray-700 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition backdrop-blur-sm"
                   />
                 </div>
               </div>
@@ -84,7 +98,7 @@ export default function ContactPage() {
                   id="subject"
                   name="subject"
                   required
-                  className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition"
+                  className="w-full bg-black border border-gray-600 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition"
                 />
               </div>
               <div>
@@ -99,13 +113,13 @@ export default function ContactPage() {
                   name="message"
                   rows={5}
                   required
-                  className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition"
+                  className="w-full bg-black border border-gray-600 rounded-md py-2 px-4 text-white focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition"
                 ></textarea>
               </div>
               <div className="flex items-center justify-between">
                 <button
                   type="submit"
-                  className="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-md transition-all duration-300 shadow-lg hover:shadow-gray-500/50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-800 border border-gray-600"
+                  className="bg-black/60 hover:bg-black/80 text-white font-semibold py-3 px-6 rounded-md transition-all duration-300 shadow-lg hover:shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-black border border-gray-700 backdrop-blur-sm"
                 >
                   Envoyer le Message
                 </button>
@@ -114,7 +128,7 @@ export default function ContactPage() {
             </form>
           </div>
 
-          <div className="bg-gray-800 p-8 rounded-lg border border-gray-700 shadow-xl h-full flex flex-col">
+          <div className="bg-black/60 backdrop-blur-sm p-8 rounded-lg border border-gray-800 shadow-2xl h-full flex flex-col">
             <div>
               <h2 className="text-3xl font-bold mb-8 text-white">
                 Retrouvez-nous
@@ -122,7 +136,7 @@ export default function ContactPage() {
               <ul className="space-y-6">
                 {/* Item 1: Adresse */}
                 <li className="flex items-start gap-5">
-                  <div className="flex-shrink-0 bg-gray-700 p-3 rounded-full">
+                  <div className="flex-shrink-0 bg-black/40 p-3 rounded-full backdrop-blur-sm border border-gray-700">
                     <MapPinIcon className="h-6 w-6 text-gray-300" />
                   </div>
                   <div>
@@ -136,7 +150,7 @@ export default function ContactPage() {
 
                 {/* Item 2: Email */}
                 <li className="flex items-start gap-5">
-                  <div className="flex-shrink-0 bg-gray-700 p-3 rounded-full">
+                  <div className="flex-shrink-0 bg-black/40 p-3 rounded-full backdrop-blur-sm border border-gray-700">
                     <EnvelopeIcon className="h-6 w-6 text-gray-300" />
                   </div>
                   <div>
@@ -152,7 +166,7 @@ export default function ContactPage() {
 
                 {/* Item 3: Téléphone */}
                 <li className="flex items-start gap-5">
-                  <div className="flex-shrink-0 bg-gray-700 p-3 rounded-full">
+                  <div className="flex-shrink-0 bg-black/40 p-3 rounded-full backdrop-blur-sm border border-gray-700">
                     <PhoneIcon className="h-6 w-6 text-gray-300" />
                   </div>
                   <div>
@@ -171,7 +185,7 @@ export default function ContactPage() {
             </div>
 
             <div className="mt-auto pt-8">
-              <div className="border-t border-gray-700 pt-6 flex items-center justify-center gap-6">
+              <div className="border-t border-gray-800 pt-6 flex items-center justify-center gap-6">
                 <a
                   href="https://instagram.com/alegria.bar"
                   target="_blank"
@@ -193,6 +207,7 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

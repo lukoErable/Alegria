@@ -91,22 +91,47 @@ export function useOpeningHours() {
       let nextOpenDay = null;
       let nextOpenTime = null;
       
-      for (let i = 1; i <= 7; i++) {
-        const nextDayIndex = (actualDayIndex + i) % 7;
-        const nextDay = hoursData[nextDayIndex];
-        
-        if (nextDay.open !== null) {
-          nextOpenDay = nextDay.day;
-          nextOpenTime = formatTime(nextDay.open);
-          break;
+      // D'abord vérifier si l'établissement doit ouvrir plus tard dans la même journée
+      if (today.open !== null && currentHour < today.open) {
+        nextOpenDay = today.day;
+        nextOpenTime = formatTime(today.open);
+      } else {
+        // Sinon chercher la prochaine ouverture dans les jours suivants
+        for (let i = 1; i <= 7; i++) {
+          const nextDayIndex = (actualDayIndex + i) % 7;
+          const nextDay = hoursData[nextDayIndex];
+          
+          if (nextDay.open !== null) {
+            nextOpenDay = nextDay.day;
+            nextOpenTime = formatTime(nextDay.open);
+            break;
+          }
         }
       }
       
       if (nextOpenDay && nextOpenTime) {
+        // Déterminer le message selon le jour
+        let dayMessage = "";
+        if (nextOpenDay === today.day) {
+          dayMessage = "Réouvre aujourd'hui";
+        } else {
+          // Calculer le nombre de jours jusqu'à la prochaine ouverture
+          const nextDayIndex = hoursData.findIndex(day => day.day === nextOpenDay);
+          const daysUntilOpen = (nextDayIndex - actualDayIndex + 7) % 7;
+          
+          if (daysUntilOpen === 1) {
+            dayMessage = "Réouvre demain";
+          } else if (daysUntilOpen === 2) {
+            dayMessage = "Réouvre après-demain";
+          } else {
+            dayMessage = `Réouvre ${nextOpenDay}`;
+          }
+        }
+        
         setStatus({ 
           isOpen: false, 
           message: "Fermé Actuellement", 
-          nextInfo: `Réouverture ${nextOpenDay} à ${nextOpenTime}` 
+          nextInfo: `${dayMessage} à ${nextOpenTime}` 
         });
       } else {
         setStatus({ 
