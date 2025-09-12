@@ -83,7 +83,7 @@ export function MenuCategory({ category }: MenuCategoryProps) {
           ref={imageRef}
           className={`absolute inset-0 bg-cover bg-center ${isMobile ? 'parallax-mobile' : ''}`}
           style={{
-            backgroundImage: `url(${selectedImage})`,
+            backgroundImage: `radial-gradient(ellipse 100% 40% at center, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 1)), url(${selectedImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: isMobile ? 'scroll' : 'fixed',
@@ -93,17 +93,14 @@ export function MenuCategory({ category }: MenuCategoryProps) {
             left: isMobile ? '-5%' : '0',
             width: isMobile ? '110%' : '100%'
           }}
+          
         />
       )}
-      
-      {/* Overlay avec dégradé parfaitement lisse */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/100 via-black/10 to-black/100"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-black/100 via-black/10 to-black/100"></div>
       
       {/* Contenu de la catégorie */}
       <div className="relative z-10 p-6 md:p-8">
         <h2 className="text-2xl font-bold text-white border-b border-gray-400/50 pb-2 mb-6 tracking-wide" style={{
-          textShadow: '2px 2px 4px rgba(0,0,0,0.9), 0 0 8px rgba(255,255,255,0.3)',
+          textShadow: '2px 2px 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.3)',
           filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.7))'
         }}>
           {category.title}

@@ -87,7 +87,7 @@ export function ImageTextSplit({
         <div 
           className="absolute inset-0 md:hidden"
           style={{
-            background: 'radial-gradient(ellipse 100% 50% at center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1))'
+            background: 'radial-gradient(ellipse 100% 40% at center, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 1))'
           }}
         ></div>
       </div>

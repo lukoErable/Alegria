@@ -1,7 +1,7 @@
 // app/menu/page.tsx
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { MenuCategory } from "../components/MenuCategory";
 import { MenuFilter } from "../components/MenuFilter";
 import { menuData } from "../data/menuData";
@@ -12,9 +12,12 @@ export default function MenuPage() {
   const [scrollPositions, setScrollPositions] = useState<{ [key: string]: number }>({});
   const contentRef = useRef<HTMLDivElement>(null);
   
-  const filteredCategories = menuData.filter(category => category.type === activeFilter);
+  const filteredCategories = useMemo(() => 
+    menuData.filter(category => category.type === activeFilter),
+    [activeFilter]
+  );
 
-  const handleFilterChange = (filter: 'drinks' | 'food') => {
+  const handleFilterChange = useCallback((filter: 'drinks' | 'food') => {
     // Sauvegarder la position de scroll actuelle avant de changer
     setScrollPositions(prev => ({
       ...prev,
@@ -32,7 +35,7 @@ export default function MenuPage() {
       const savedPosition = scrollPositions[filter] || 0;
       window.scrollTo({ top: savedPosition, behavior: 'auto' });
     }
-  };
+  }, [activeFilter, viewedCategories, scrollPositions]);
 
   return (
     <div className="bg-black overflow-hidden">
