@@ -20,21 +20,9 @@ const categoryImages: { [key: string]: string } = {
 export function MenuCategory({ category }: MenuCategoryProps) {
   const imageRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   
   const selectedImage = categoryImages[category.title] || "/images/bar-1.jpg";
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   // Gestionnaire pour vérifier que l'image est chargée
   useEffect(() => {
@@ -48,7 +36,7 @@ export function MenuCategory({ category }: MenuCategoryProps) {
   }, [selectedImage]);
 
   useEffect(() => {
-    if (!isMobile || !imageRef.current || !containerRef.current) return;
+    if (!imageRef.current || !containerRef.current) return;
 
     const handleScroll = () => {
       const container = containerRef.current;
@@ -74,26 +62,27 @@ export function MenuCategory({ category }: MenuCategoryProps) {
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isMobile]);
+  }, []);
 
   return (
-    <div ref={containerRef} className="relative overflow-hidden rounded-lg z-20">
+    <div ref={containerRef} className="relative overflow-hidden rounded-lg z-20 min-h-screen">
+      {/* Dégradé du haut - visible uniquement sur PC */}
+      <div className="hidden md:block absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black to-transparent z-30 pointer-events-none"></div>
       {selectedImage && (
         <div 
           ref={imageRef}
-          className={`absolute inset-0 bg-cover bg-center ${isMobile ? 'parallax-mobile' : ''}`}
+          className="absolute inset-0 bg-cover bg-center parallax-mobile"
           style={{
             backgroundImage: `radial-gradient(ellipse 100% 40% at center, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 1)), url(${selectedImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            backgroundAttachment: isMobile ? 'scroll' : 'fixed',
+            backgroundAttachment: 'scroll',
             backgroundRepeat: 'no-repeat',
-            height: isMobile ? '100%' : '100%',
-            top: isMobile ? '0%' : '0',
-            left: isMobile ? '-5%' : '0',
-            width: isMobile ? '110%' : '100%'
+            height: '100%',
+            top: '0%',
+            left: '-5%',
+            width: '110%'
           }}
-          
         />
       )}
       
@@ -125,6 +114,9 @@ export function MenuCategory({ category }: MenuCategoryProps) {
           ))}
         </div>
       </div>
+      
+      {/* Dégradé du bas - visible uniquement sur PC */}
+      <div className="hidden md:block absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent z-30 pointer-events-none"></div>
     </div>
   );
 }

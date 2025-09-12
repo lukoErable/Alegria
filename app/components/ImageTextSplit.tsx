@@ -72,7 +72,10 @@ export function ImageTextSplit({
   }, []);
 
   return (
-    <section className={`flex flex-col bg-black ${flexDirection} gap-0`}>
+    <section className={`flex flex-col bg-black ${flexDirection} gap-0 relative`}>
+      {/* Dégradé du haut - visible uniquement sur PC */}
+      <div className="hidden md:block absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black to-transparent z-20 pointer-events-none"></div>
+      
       <div 
         ref={imageRef}
         className={`w-full md:w-1/2 min-h-screen md:min-h-[700px] bg-cover md:bg-cover bg-fixed bg-no-repeat relative transition-transform duration-75 ease-out md:bg-center image-section ${reverse ? 'reverse' : 'normal'} ${backgroundPosition}`}
@@ -134,6 +137,9 @@ export function ImageTextSplit({
             )}
           </div>
         </div>
+        
+        {/* Dégradé du bas - visible uniquement sur PC */}
+        <div className="hidden md:block absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none"></div>
     </section>
   );
 }
